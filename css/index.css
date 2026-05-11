@@ -60,7 +60,6 @@ h3{
 
 .configuracoes{
     width: auto;
-    margin: 0 2vw;
     height: 40vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -74,7 +73,138 @@ h3{
     border: 3px solid #292691;
     height: 80%;
     margin: 1vw;
+    display: grid;
+    grid-template-columns: 1fr;
 }
+
+.icone, .input, .descricao{
+
+}
+
+#bot-icon, #cartelas-icon, #relogio-icon{
+    height: 75px;
+    margin-left: 20px;
+}
+
+.icone{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.icone h4{
+    color: #ffffff;
+    font-size: 25px;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+}
+
+.input{
+    border: 3px solid #1A1E6B;
+    background-color: #060C3A;
+    border-radius: 15px;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    width: 75%;
+    padding: 5px;
+    justify-content: center;
+}
+
+/*Remove os botões de incremento/decremento dos inputs do tipo number*/
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input button{
+    color: #ffffff;
+    font-size: 40px;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+    width: 85px;
+    
+    border-radius: 15px;
+}
+
+#mais-bots, #menos-bots{
+    background: linear-gradient(to bottom, #0051C0, #002B7A);
+    border: none;
+}
+
+#mais-bots:hover, #menos-bots:hover{
+    background: linear-gradient(to bottom, #002B7A, #002B7A);
+}
+
+#mais-cartelas, #menos-cartelas{
+    background: linear-gradient(to bottom, #3E0DB3, #230677);
+    border: none;
+}
+
+#mais-cartelas:hover, #menos-cartelas:hover{
+    background: linear-gradient(to bottom, #230677, #230677);
+}
+
+.input input{
+    color: #ffffff;
+    max-height: 85px;
+    font-size: 40px;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+}
+
+.descricao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.descricao p{
+    margin: 15px 1vw;
+    font-size: 15px;
+    color: #8E91B0;
+    font-family: sans-serif;
+    text-shadow: 1px 1px 4px #000000;
+}
+
+#div-tempo{
+    background: linear-gradient(to bottom, #110D3C, #090932);
+}
+
+#input-tempo{
+    color: #ffffff;
+    font-size: 40px;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+    background-color: transparent;
+    appearance: none;
+    border: 1px solid transparent;
+}
+
+select{
+    color: #ffffff;
+    font-size: 40px;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 1px;
+    appearance: none;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+option{
+    background: #110D3C;
+    color: #ffffff;
+}
+
 
 .iniciar{
     color: #ffffff;
@@ -93,11 +223,8 @@ h3{
     width: 25%;
 }
 
-
 .iniciar:hover{
-    /*brilho*/
     background: linear-gradient(to top, #3FD41A, #3FD41A);
-    transition: all 2s ease-in-out;
 }
 
 
@@ -112,8 +239,22 @@ h3{
         font-size: 15px;
     }
 
+    .icone h4{
+        font-size: 16px;
+    }
+
     .iniciar{
         width: 50%;
+        margin-top: 10vh;
+        font-size: 20px;
+    }
+
+    #play{
+        height: 70px;
+    }
+
+    .descricao p{
+        margin: 30px 1vw;
     }
 }
 
@@ -130,5 +271,28 @@ h3{
 
     .iniciar{
         width: 50%;
+        font-size: 18px;
+        padding: 0px 10px;
+        margin-top: 5vh;
+    }
+
+    #play{
+        height: 60px;
+    }
+
+    #bot-icon, #cartelas-icon, #relogio-icon{
+        height: 50px;
+        margin-left: 20px;
+    }
+
+    .icone h4{
+        font-size: 20px;
+        font-family: sans-serif;
+        text-shadow: 2px 2px 4px #000000;
+    }
+
+    .descricao p{
+        margin: 0px 1vw;
+        font-size: 10px;
     }
 }

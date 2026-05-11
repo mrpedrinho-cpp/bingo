@@ -12,15 +12,62 @@
         <div class="container">
             <h3>⭐ CONFIGURE SEU JOGO ⭐</h3>
             <div class="configuracoes">
-                <div class="configuracao">
 
-                </div>
+                <!-- Número de bots -->
                 <div class="configuracao">
-                    
-                </div>
+                    <div class="icone">
+                        <img src="imgs/bot.png" id="bot-icon">
+                        <h4>Número de bots</h4>
+                    </div>
+                    <div class="input">
+                        <button id="menos-bots">-</button>
+                        <input type="number" name="bots" id="input-bots" min="1" max="10" value="2">
+                        <button id="mais-bots">+</button>
+                    </div>
+                    <div class="descricao">
+                        <p>Mínimo: 1</p>
+                        <p>Máximo: 10</p>
+                    </div>
+                </div> 
+
+                <!-- Quantidade de cartelas -->
                 <div class="configuracao">
-                    
-                </div>               
+                    <div class="icone">
+                        <img src="imgs/cartelas.png" id="cartelas-icon">
+                        <h4>Quantidade de cartelas</h4>
+                    </div>
+                    <div class="input">
+                        <button id="menos-cartelas">-</button>
+                        <input type="number" name="cartelas" id="input-cartelas" min="1" max="6" value="1">
+                        <button id="mais-cartelas">+</button>
+                    </div>
+                    <div class="descricao">
+                        <p>Mínimo: 1</p>
+                        <p>Máximo: 6</p>
+                    </div>
+                </div>
+
+                <!-- Tempo entre números -->
+                <div class="configuracao">
+                    <div class="icone">
+                        <img src="imgs/relogio.png" id="relogio-icon">
+                        <h4>Tempo entre números</h4>
+                    </div>
+                    <div class="input" id="div-tempo">
+                        <select name="tempo" id="input-tempo">
+                            <option value="1">1 segundo</option>
+                            <option value="2">2,5 segundos</option>
+                            <option value="5">5 segundos</option>
+                            <option value="10" selected>10 segundos</option>
+                            <option value="15">15 segundos</option>
+                            <option value="20">20 segundos</option>
+                        </select>
+                    </div>
+                    <div class="descricao">
+                        <p>Mais tempo = Jogo mais relaxado</p>
+                    </div>
+                </div>
+
             </div>
             <div class="iniciar">
                 <img src="imgs/play.png" alt="play icon" id="play">
