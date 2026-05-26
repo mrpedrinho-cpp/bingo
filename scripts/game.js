@@ -23,7 +23,12 @@ function gerarCartelas(quantidadeCartelas) {
         cartela.numeros = [];
         for(let j = 0; j < 24; j++) {
             let numero = Math.floor(Math.random() * 98) + 1;
-            cartela.numeros.push(numero);
+            
+            if(!cartela.numeros.includes(numero)) {
+                cartela.numeros.push(numero);
+            }else{
+                j--;
+            }
         }
         cartela.numeros.sort((a, b) => a - b);
 
@@ -54,10 +59,43 @@ function sortearNumero() {
     
 }
 
+function mostrarCartelas(cartelas) {
+    const container = document.getElementById("cartelas");
+
+    // limpa antes de mostrar
+    container.innerHTML = "";
+
+    for(let i = 0; i < cartelas.length; i++) {
+
+        const cartelaDiv = document.createElement("div");
+        cartelaDiv.classList.add("cartela");
+
+        let html = `<h3>Cartela ${i + 1}</h3>`;
+
+        for(let j = 0; j < 5; j++) {
+            html += `<div class="linha">`;
+
+            for(let k = 0; k < 5; k++) {
+                html += `<span class="numero">${cartelas[i].cartela[j][k]}</span>`;
+            }
+
+            html += `</div>`;
+        }
+
+        cartelaDiv.innerHTML = html;
+        container.appendChild(cartelaDiv);
+    }
+}
+
 function iniciarJogo() {
     gerarCartelas(config.cartelas);
     gerarBots(config.bots, config.cartelas);
     console.log(cartelasJogador);
+    mostrarCartelas(cartelasJogador);
+}
+
+function bingo() {
+    
 }
 
 iniciarJogo();
