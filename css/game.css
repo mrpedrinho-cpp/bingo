@@ -50,6 +50,7 @@ nav {
     background-color: red;
     height: auto;
     width: 50vw;
+    display: flex;
 }
 
 .restantes{
@@ -79,9 +80,45 @@ main{
     width: 30vw;
 }
 
+.sorteio {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+.ultimo-numero {
+    width: 30%;
+    height: 100%;
+    border: #fff 1px solid;
+    display: flex;
+}
 
+.ultimo-numero p {
+    font-size: 2vh;
+    font-weight: bold;
+    margin: auto;
+    color: #fff;
+}
 
+.ultimo-numero span {
+    font-size: 5vh;
+    font-weight: bold;
+    margin: auto;
+    background-color: #fff;
+    border: black 8px solid;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.numeros-sorteados {
+    width: 70%;
+    height: 100%;
+    border: yellow 1px solid;
+}
+
+.numeros-sorteados p {
+    color: #fff;
+    text-align: left;
+    margin: 5px;
+}
 
 
 

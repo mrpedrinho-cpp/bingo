@@ -54,10 +54,46 @@ function gerarBots(quantidadeBots, quantidadeCartelas) {
     
 }
 
-// Função para sortear um número
-function sortearNumero() {
-    
+
+// Função para sortear os números
+let numerosDisponiveis = [];
+let numerosSorteados = [];
+
+// Cria os números de 1 a 98
+for(let i = 1; i <= 98; i++) {
+    numerosDisponiveis.push(i);
 }
+
+// Embaralha os números (Fisher-Yates)
+for(let i = numerosDisponiveis.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+
+    [numerosDisponiveis[i], numerosDisponiveis[j]] =
+    [numerosDisponiveis[j], numerosDisponiveis[i]];
+}
+
+function sortearNumeros(tempo) {
+    const interval = setInterval(() => {
+
+        if(numerosDisponiveis.length === 0) {
+            clearInterval(interval);
+            console.log("Todos os números foram sorteados!");
+            return;
+        }
+
+        // Remove e retorna o primeiro número da lista
+        let numero = numerosDisponiveis.shift();
+
+        numerosSorteados.push(numero);
+
+        console.log("Número sorteado:", numero);
+        console.log("Números restantes:", numerosDisponiveis.length);
+        console.log("Números sorteados:", numerosSorteados);
+
+    }, tempo);
+}
+
+
 
 function mostrarCartelas(cartelas) {
     const container = document.getElementById("cartelas");
@@ -92,6 +128,7 @@ function iniciarJogo() {
     gerarBots(config.bots, config.cartelas);
     console.log(cartelasJogador);
     mostrarCartelas(cartelasJogador);
+    sortearNumeros(config.tempo);
 }
 
 function bingo() {
