@@ -54,10 +54,16 @@ function gerarBots(quantidadeBots, quantidadeCartelas) {
     
 }
 
+// Função para gerar cores aleatórias para a bola dos números sorteados
+function gerarCorAleatoria() {
+    return `hsl(${Math.random() * 360}, 80%, 50%)`;
+}
+
 
 // Função para sortear os números
 let numerosDisponiveis = [];
 let numerosSorteados = [];
+let coresNumeros = {}
 
 // Cria os números de 1 a 98
 for(let i = 1; i <= 98; i++) {
@@ -85,15 +91,49 @@ function sortearNumeros(tempo) {
         let numero = numerosDisponiveis.shift();
 
         numerosSorteados.push(numero);
-
+        coresNumeros[numero] = gerarCorAleatoria();
         console.log("Número sorteado:", numero);
-        console.log("Números restantes:", numerosDisponiveis.length);
+        //console.log("Números restantes:", numerosDisponiveis.length);
         console.log("Números sorteados:", numerosSorteados);
+        //console.log("Cores dos números:", coresNumeros);
+        atualizarUltimosNumeros();
 
     }, tempo);
 }
 
+// Atualizar ultimos números sorteados
+function atualizarUltimosNumeros() {
+    const ultimoNumero = document.getElementById("ultimo-numero");
+    const numerosRestantes = document.getElementById("numeros-restante");
+    const numero1 = document.getElementById("numero-bola-1");
+    const numero2 = document.getElementById("numero-bola-2");
+    const numero3 = document.getElementById("numero-bola-3");
+    const numero4 = document.getElementById("numero-bola-4");
+    const numero5 = document.getElementById("numero-bola-5");
+    const numero6 = document.getElementById("numero-bola-6");
 
+    ultimoNumero.textContent = numerosSorteados[numerosSorteados.length - 1] || '00';
+    if(numerosSorteados[numerosSorteados.length - 1] < 10) {
+        ultimoNumero.textContent = "0" + numerosSorteados[numerosSorteados.length - 1];
+    }
+    ultimoNumero.style.borderColor = coresNumeros[numerosSorteados[numerosSorteados.length - 1]] || 'black';
+
+    for(let i = 1; i <= 6; i++) {
+        const bola = document.getElementById(`numero-bola-${i}`);
+        const numero = numerosSorteados[numerosSorteados.length - i];
+        if(numero) {
+            bola.style.borderColor = coresNumeros[numero];
+        }
+
+        // Atualiza o número dentro da bola
+        bola.textContent = numero || '00';
+        if(numero<10) {
+            bola.textContent = "0" + numero;
+        }
+    }
+
+    numerosRestantes.textContent = numerosDisponiveis.length;
+}
 
 function mostrarCartelas(cartelas) {
     const container = document.getElementById("cartelas");

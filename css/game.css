@@ -47,16 +47,22 @@ nav {
 }
 
 .sorteio {
-    background-color: red;
     height: auto;
     width: 50vw;
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #050B44, #040933);
+    border: 3px solid #292691;
+    border-radius: 15px;
 }
 
 .restantes{
-    background-color: green;
+    background: linear-gradient(to bottom, #050B44, #040933);
+    border: 3px solid #292691;
+    border-radius: 15px;
     height: auto;
     width: 20vw;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 main{
@@ -80,22 +86,18 @@ main{
     width: 30vw;
 }
 
-.sorteio {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .ultimo-numero {
     width: 30%;
     height: 100%;
-    border: #fff 1px solid;
     display: flex;
+    border-right: 3px solid #292691;
 }
 
 .ultimo-numero p {
-    font-size: 2vh;
-    font-weight: bold;
+    font-size: 3vh;
     margin: auto;
     color: #fff;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .ultimo-numero span {
@@ -111,18 +113,53 @@ main{
 .numeros-sorteados {
     width: 70%;
     height: 100%;
-    border: yellow 1px solid;
 }
 
 .numeros-sorteados p {
     color: #fff;
     text-align: left;
-    margin: 5px;
+    margin: 8px;
+    text-shadow: 2px 2px 4px #000000;
 }
 
+.numeros-bolas{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
 
+.numero-bola {
+    font-size: 3vh;
+    font-weight: bold;
+    margin: auto;
+    background-color: #fff;
+    border: black 8px solid;
+    border-radius: 50%;
+    padding: 10px;
+}
 
+.restantes{
+    color: #fff;
+    text-shadow: 2px 2px 4px #000000;
+}
 
+.restantes .texto{
+    font-size: 3vh;
+    margin: 10px;
+}
+
+.restantes .numero-restante{
+    font-size: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.img-bingo {
+    width: 50px;
+    height: auto;
+}
 
 
 
