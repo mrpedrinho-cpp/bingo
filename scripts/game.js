@@ -51,8 +51,74 @@ function gerarCartelas(quantidadeCartelas) {
 
 // Função para gerar os bots e suas cartelas
 function gerarBots(quantidadeBots, quantidadeCartelas) {
-    
+    bots = [];
+
+    for(let i = 0; i < quantidadeBots; i++) {
+        let bot = {};
+        bot.nome = `Bot ${i + 1}`;
+        bot.cartelas = [];
+        let quantidadeCartelasBot = Math.floor(Math.random() * quantidadeCartelas) + 1;
+
+        for(let j = 0; j < quantidadeCartelasBot; j++) {
+            let cartela = {};
+            cartela.numerosAcertos = 0;
+            cartela.numeros = [];
+            for(let k = 0; k < 24; k++) {
+                let numero = Math.floor(Math.random() * 98) + 1;
+                if(!cartela.numeros.includes(numero)) {
+                    cartela.numeros.push(numero);
+                } else {
+                    k--;
+                }
+            }
+
+            cartela.numeros.sort((a, b) => a - b);
+            cartela.cartela = [];
+
+            for(let k = 0; k < 5; k++) {
+                cartela.cartela[k] = [];
+                for(let l = 0; l < 5; l++) {
+                    if(k === 2 && l === 2) {
+                        cartela.cartela[k][l] = "⭐";
+                    } else {
+                        cartela.cartela[k][l] = cartela.numeros.shift();
+                    }
+                }
+            }
+            bot.cartelas.push(cartela);
+        }
+        bots.push(bot);
+    }
 }
+
+async function verificarAcertoBots(tempo, numeroSorteado) {
+    await new Promise(resolve => setTimeout(resolve, Math.random() * tempo));
+
+    for(let i = 0; i < bots.length; i++) {
+        let bot = bots[i];
+        for(let j = 0; j < bot.cartelas.length; j++) {
+            let cartela = bot.cartelas[j];
+            for(let linha = 0; linha < 5; linha++) {
+                for(let coluna = 0; coluna < 5; coluna++) {
+                    if(cartela.cartela[linha][coluna] === numeroSorteado) {
+                        cartela.numerosAcertos++;
+                        console.log(
+                            `${bot.nome} acertou ${numeroSorteado} na cartela ${j + 1}`
+                        );
+                        if(cartela.numerosAcertos === 24) {
+                            alert(
+                                `${bot.nome} fez BINGO na cartela ${j + 1}!`
+                            );
+                            location.reload();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 // Função para gerar cores aleatórias para a bola dos números sorteados
 function gerarCorAleatoria() {
@@ -97,7 +163,7 @@ function sortearNumeros(tempo) {
         console.log("Números sorteados:", numerosSorteados);
         //console.log("Cores dos números:", coresNumeros);
         atualizarUltimosNumeros();
-
+        verificarAcertoBots(tempo, numero);
     }, tempo);
 }
 
@@ -160,6 +226,28 @@ function mostrarCartelas(cartelas) {
 
         cartelaDiv.innerHTML = html;
         container.appendChild(cartelaDiv);
+    }
+
+    // Ajusta o layout das cartelas de acordo com a quantidade
+    switch (config.cartelas) {
+        case 1:
+            container.style.gridTemplateColumns = "1fr";
+            break;
+        case 2:
+            container.style.gridTemplateColumns = "1fr 1fr";
+            break;
+        case 3:
+            container.style.gridTemplateColumns = "1fr 1fr 1fr";
+            break;
+        case 4:
+            container.style.gridTemplateColumns = "1fr 1fr";
+            break;
+        case 5:
+            container.style.gridTemplateColumns = "1fr 1fr 1fr";
+            break;
+        case 6:
+            container.style.gridTemplateColumns = "1fr 1fr 1fr";
+            break;
     }
 }
 
