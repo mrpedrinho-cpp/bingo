@@ -49,6 +49,30 @@ function gerarCartelas(quantidadeCartelas) {
     }
 }
 
+function mostrarBots() {
+    const listaJogadores = document.getElementById("lista-jogadores");
+    const divJogadores = document.querySelector(".jogadores");
+    listaJogadores.innerHTML =
+    `<li>
+        <img src="imgs/player.png" alt="Jogador" class="img-jogador">
+        <p><span>Você</span><br><span id="num-cartelas">${config.cartelas}</span> Cartelas</p>
+    </li>`;
+
+    bots.forEach(bot => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <img src="imgs/bot.png" alt="${bot.nome}" class="img-jogador">
+            <p><span>${bot.nome}</span><br><span>${bot.cartelas.length}</span> Cartelas</p>
+        `;
+        listaJogadores.appendChild(li);
+    });
+
+    if(config.bots > 4) {
+        listaJogadores.style.gridTemplateColumns = "1fr 1fr";
+        divJogadores.style.width = "40vw";
+    }
+}
+
 // Função para gerar os bots e suas cartelas
 function gerarBots(quantidadeBots, quantidadeCartelas) {
     bots = [];
@@ -89,6 +113,7 @@ function gerarBots(quantidadeBots, quantidadeCartelas) {
         }
         bots.push(bot);
     }
+    mostrarBots();
 }
 
 async function verificarAcertoBots(tempo, numeroSorteado) {

@@ -81,10 +81,57 @@ main{
 }
 
 .jogadores {
-    background-color: yellow;
+    background-color: #090D2E;
+    border: 3px solid #1E1D54;
     height: auto;
-    width: 30vw;
+    width: 20vw;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 15px;
 }
+
+.jogadores h2 {
+    font-size: 4vh;
+    text-shadow: 2px 2px 4px #000000;
+    margin: 10px;
+}
+
+.jogadores ul {
+    list-style-type: none;
+    display: grid;
+    padding: 10px;
+}
+
+.jogadores li{
+    width: auto;
+    margin: 10px;
+    background-color: #091137;
+    display: flex;
+    align-items: left;
+    border: 2px solid #192256;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.img-jogador {
+    height: 75px;
+}
+
+.jogadores p {
+    font-size: 2vh;
+    text-align: left;
+    margin: auto 10px;
+}
+
+.jogadores p span {
+    font-size: 3vh;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+
+
 
 .ultimo-numero {
     width: 30%;
