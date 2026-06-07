@@ -47,11 +47,15 @@ function gerarCartelas(quantidadeCartelas) {
 
         cartelasJogador.push(cartela);
     }
+
+    mostrarCartelas(cartelasJogador);
 }
 
 function mostrarBots() {
     const listaJogadores = document.getElementById("lista-jogadores");
     const divJogadores = document.querySelector(".jogadores");
+    const divCartelas = document.getElementById("cartelas");
+    
     listaJogadores.innerHTML =
     `<li>
         <img src="imgs/player.png" alt="Jogador" class="img-jogador">
@@ -67,9 +71,8 @@ function mostrarBots() {
         listaJogadores.appendChild(li);
     });
 
-    if(config.bots > 4) {
-        listaJogadores.style.gridTemplateColumns = "1fr 1fr";
-        divJogadores.style.width = "40vw";
+    if(config.cartelas < 4){
+        document.getElementById("lista-jogadores").style.maxHeight = "50vh";
     }
 }
 
@@ -237,13 +240,20 @@ function mostrarCartelas(cartelas) {
         const cartelaDiv = document.createElement("div");
         cartelaDiv.classList.add("cartela");
 
-        let html = `<h3>Cartela ${i + 1}</h3>`;
+        let html = `<h3>CARTELA ${i + 1}</h3>`;
+
+        html += `<div class="linha">`;
+        for (const letra of ["B", "I", "N", "G", "O"]) {
+            html += `<button class="letra" id="letra-${letra}">${letra}</button>`;
+        }
+        html += `</div>`;
+
 
         for(let j = 0; j < 5; j++) {
             html += `<div class="linha">`;
 
             for(let k = 0; k < 5; k++) {
-                html += `<span class="numero">${cartelas[i].cartela[j][k]}</span>`;
+                html += `<button onclick="numero(${i}, ${j}, ${k}, ${cartelas[i].cartela[j][k]})" class="numero">${cartelas[i].cartela[j][k]}</button>`;
             }
 
             html += `</div>`;
@@ -274,14 +284,21 @@ function mostrarCartelas(cartelas) {
             container.style.gridTemplateColumns = "1fr 1fr 1fr";
             break;
     }
+
+    document.getElementById("suas-cartelas").textContent = `SUAS CARTELAS (${config.cartelas})`;
 }
 
 function iniciarJogo() {
     gerarCartelas(config.cartelas);
     gerarBots(config.bots, config.cartelas);
     console.log(cartelasJogador);
-    mostrarCartelas(cartelasJogador);
     sortearNumeros(config.tempo);
+}
+
+function numero(idCartela, linha, coluna, valor) {
+    console.log(`Cartela ${idCartela}`);
+    console.log(`Posição [${linha}][${coluna}]`);
+    console.log(`Número: ${valor}`);
 }
 
 function bingo() {
@@ -289,3 +306,5 @@ function bingo() {
 }
 
 iniciarJogo();
+
+//https://chatgpt.com/c/6a23bea0-477c-83e9-b45f-caad1c4e3650 Planos fazer o jogador ganhar

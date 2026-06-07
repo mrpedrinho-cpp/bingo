@@ -43,7 +43,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .sorteio {
@@ -70,14 +70,25 @@ main{
     justify-content: center;
     gap: 20px;
     height: auto;
-    padding: 2vw;
+    padding: 1vw;
+}
+
+#suas-cartelas{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    background: linear-gradient(to bottom, #0139A6, #00287B);
+    width: 300px;
+    margin: auto;
+    padding: 5px;
 }
 
 .cartelas {
-    background-color: purple;
+    background-color: #03113E;
+    border: 2px solid #073377;
+    border-radius: 15px;
     height: auto;
     width: auto;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .jogadores {
@@ -100,6 +111,9 @@ main{
     list-style-type: none;
     display: grid;
     padding: 10px;
+    overflow-y: auto;
+    max-height: 100vh;
+    
 }
 
 .jogadores li{
@@ -215,20 +229,62 @@ main{
 
 
 
-
 #cartelas {
+    margin-top: 5px;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cartelas h3{
+    color: #fff;
+}
+
+.linha .letra{
+    width: 60px;
+    height: 50px;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 25px;
+}
+
+#letra-B {
+    background-color: #FF0000;
+    color: #fff;
+}
+
+#letra-I {
+    background-color: #FFFF00;
+    color: #fff;
+}
+
+#letra-N {
+    background-color: #00FF00;
+    color: #fff;
+}
+
+#letra-G {
+    background-color: #0000FF;
+    color: #fff;
+}
+
+#letra-O {
+    background-color: #800080;
+    color: #fff;
 }
 
 .cartela {
-    border: 2px solid black;
+    border: 2px solid #073377;
     padding: 15px;
     border-radius: 10px;
-    background: white;
+    background-color: #030F36;
 }
 
 .linha {
@@ -236,13 +292,15 @@ main{
 }
 
 .numero {
-    width: 50px;
+    width: 60px;
     height: 50px;
     border: 1px solid gray;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    background-color: #fff;
 }
 
 .bingo{
