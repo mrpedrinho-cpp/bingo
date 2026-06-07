@@ -18,9 +18,9 @@ function gerarCartelas(quantidadeCartelas) {
     for(let i = 0; i < quantidadeCartelas; i++) {
 
         let cartela = {};
-        cartela.numerosAcertos = 0;
-
         cartela.numeros = [];
+        cartela.numerosMarcados = [];
+
         for(let j = 0; j < 24; j++) {
             let numero = Math.floor(Math.random() * 98) + 1;
             
@@ -34,20 +34,19 @@ function gerarCartelas(quantidadeCartelas) {
 
 
         cartela.cartela= [];
-            for(let j = 0; j < 5; j++) {
-                cartela.cartela[j] = [];
-                for(let k = 0; k < 5; k++) {
-                    if(j === 2 && k === 2) {
-                        cartela.cartela[j][k] = '⭐';
-                    } else {
-                        cartela.cartela[j][k] = cartela.numeros.shift();
-                    }
+        for(let j = 0; j < 5; j++) {
+            cartela.cartela[j] = [];
+            for(let k = 0; k < 5; k++) {
+                if(j === 2 && k === 2) {
+                    cartela.cartela[j][k] = '⭐';
+                } else {
+                    cartela.cartela[j][k] = cartela.numeros.shift();
                 }
             }
-
+        }
+        delete cartela.numeros;
         cartelasJogador.push(cartela);
     }
-
     mostrarCartelas(cartelasJogador);
 }
 
@@ -144,6 +143,33 @@ async function verificarAcertoBots(tempo, numeroSorteado) {
                 }
             }
         }
+    }
+}
+
+function verificarAcerto(botao, idCartela, linha, coluna) {
+
+    let valor = cartelasJogador[idCartela].cartela[linha][coluna];
+
+    // Verifica se o número foi sorteado
+    if (!numerosSorteados.includes(valor)) {
+        return;
+    }
+
+    // Verifica se já foi marcado
+    if (cartelasJogador[idCartela].numerosMarcados.includes(valor)) {
+        return;
+    }
+
+    // Marca o número
+    cartelasJogador[idCartela].numerosMarcados.push(valor);
+
+    // Altera o visual
+    botao.style.backgroundColor = "#00FF00";
+    botao.style.color = "#fff";
+    botao.style.textShadow = "1px 1px 2px #000000";
+    
+    if (cartelasJogador[idCartela].numerosMarcados.length === 24) {
+        alert(`BINGO! Cartela ${idCartela + 1} completada!`);
     }
 }
 
@@ -253,7 +279,7 @@ function mostrarCartelas(cartelas) {
             html += `<div class="linha">`;
 
             for(let k = 0; k < 5; k++) {
-                html += `<button onclick="numero(${i}, ${j}, ${k}, ${cartelas[i].cartela[j][k]})" class="numero">${cartelas[i].cartela[j][k]}</button>`;
+                html += `<button onclick="verificarAcerto(this, ${i}, ${j}, ${k})" class="numero">${cartelas[i].cartela[j][k]}</button>`;
             }
 
             html += `</div>`;
@@ -293,12 +319,6 @@ function iniciarJogo() {
     gerarBots(config.bots, config.cartelas);
     console.log(cartelasJogador);
     sortearNumeros(config.tempo);
-}
-
-function numero(idCartela, linha, coluna, valor) {
-    console.log(`Cartela ${idCartela}`);
-    console.log(`Posição [${linha}][${coluna}]`);
-    console.log(`Número: ${valor}`);
 }
 
 function bingo() {

@@ -10,6 +10,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     text-align: center;
+    user-select: none;
 }
 
 h1{
@@ -301,6 +302,12 @@ main{
     align-items: center;
     font-weight: bold;
     background-color: #fff;
+    cursor: pointer;
+}
+
+.numero:hover{
+    background-color: rgb(233, 233, 233);
+    transform: scale(0.95);
 }
 
 .bingo{
