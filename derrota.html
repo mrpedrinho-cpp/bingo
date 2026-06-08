@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bingo - Derrota</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            body {
+                background-image: url('imgs/background.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                user-select: none;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            header{
+                text-align: center;
+                margin-top: 2.5vh;
+            }
+
+            .derrota{
+                width: 50vw;
+            }
+
+            main{
+                display: flex;
+            }
+
+            .cartela h3{
+                color: red;
+                text-align: center;
+            }
+                        
+            .linha .letra{
+                width: 80px;
+                height: 50px;
+                border: 1px solid gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                text-shadow: 1px 1px 2px #000000;
+                font-size: 25px;
+            }
+
+            #letra-B {
+                background-color: #FF0000;
+                color: #fff;
+            }
+
+            #letra-I {
+                background-color: #FFFF00;
+                color: #fff;
+            }
+
+            #letra-N {
+                background-color: #00FF00;
+                color: #fff;
+            }
+
+            #letra-G {
+                background-color: #0000FF;
+                color: #fff;
+            }
+
+            #letra-O {
+                background-color: #800080;
+                color: #fff;
+            }
+
+            .cartela {
+                border: 2px solid #F8302C;
+                padding: 15px;
+                border-radius: 10px;
+                background-color: rgba(3, 15, 54, 0.75);
+                margin: auto;
+                box-shadow: 0 0 10px #F8302C,  0 0 20px #F8302C,  0 0 30px #F8302C;
+            }
+
+            .linha {
+                display: flex;
+            }
+
+            .numero {
+                width: 80px;
+                height: 50px;
+                border: 1px solid gray;
+                font-size: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                background-color: white;
+            }
+
+            .letra, .numero{
+                border-radius: 2px;
+            }
+
+            footer{
+                text-align: center;
+            }
+
+            footer button{
+                text-align: center;
+                font-weight: bold;
+                font-size: 20px;
+                margin: 20px;
+                width: 200px;
+                height: 50px;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 10px;
+                text-shadow: 1px 2px 4px #000000;
+            }
+
+            footer button:hover{
+                transform: scale(1.05);
+            }
+
+            .novamente{
+                background-color: gold;
+            }
+
+            .inicial{
+                background-color: #800080;
+            }
+
+            h1{
+                margin: auto;
+                color: #fff;
+                text-shadow: 1px 2px 4px #000000;
+                padding: 17vh;
+                width: 30vw;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="imgs/que-pena.png" class="derrota" alt="Que pena! O bot venceu!">
+        </header>
+        <main id="main">
+
+        </main>
+        <footer>
+            <button onclick="location.href = 'index.html'" class="inicial">Menu inicial</button>
+            <button onclick="window.history.back()" class="novamente">Jogar Novamente</button>
+        </footer>
+        
+
+        <script>
+            let derrota = localStorage.getItem('derrota');
+            let cartela = JSON.parse(localStorage.getItem('cartela'));
+            localStorage.removeItem('cartela');
+            
+            const container = document.getElementById("main");
+
+            if(derrota == "true"){
+                // Perdeu para o bot
+                const cartelaDiv = document.createElement("div");
+                cartelaDiv.classList.add("cartela");
+
+                let html = `<h3>CARTELA DO BOT VENCEDORA</h3>`;
+
+                html += `<div class="linha">`;
+                for (const letra of ["B", "I", "N", "G", "O"]) {
+                    html += `<button class="letra" id="letra-${letra}">${letra}</button>`;
+                }
+                html += `</div>`;
+
+                for(let j = 0; j < 5; j++) {
+                    html += `<div class="linha">`;
+
+                    for(let k = 0; k < 5; k++) {
+                        html += `<button class="numero">${cartela[j][k]}</button>`;
+                    }
+
+                    html += `</div>`;
+                }
+
+                cartelaDiv.innerHTML = html;
+                container.appendChild(cartelaDiv);
+
+            }else{
+                // Bingou sem ter completado nenhuma cartela
+                console.log("sem bingo");
+                const perdeu = document.createElement("h1");
+                perdeu.textContent = "VOCÊ NÃO COMPLETOU NENHUMA CARTELA";
+                container.appendChild(perdeu);
+            }
+        </script>
+    </body>
+</html>

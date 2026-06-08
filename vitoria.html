@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bingo - Vitoria</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            body {
+                background-image: url('imgs/background.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                user-select: none;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            header{
+                text-align: center;
+                margin-top: 2.5vh;
+            }
+
+            .vitoria{
+                width: 50vw;
+            }
+
+            
+            main{
+                display: flex;
+            }
+
+            .cartela h3{
+                color: gold;
+                text-align: center;
+                padding: 5px;
+                font-size: 20px;
+            }
+                        
+            .linha .letra{
+                width: 80px;
+                height: 50px;
+                border: 1px solid gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                text-shadow: 1px 1px 2px #000000;
+                font-size: 25px;
+            }
+
+            #letra-B {
+                background-color: #FF0000;
+                color: #fff;
+            }
+
+            #letra-I {
+                background-color: #FFFF00;
+                color: #fff;
+            }
+
+            #letra-N {
+                background-color: #00FF00;
+                color: #fff;
+            }
+
+            #letra-G {
+                background-color: #0000FF;
+                color: #fff;
+            }
+
+            #letra-O {
+                background-color: #800080;
+                color: #fff;
+            }
+
+            .cartela {
+                border: 2px solid gold;
+                padding: 5px 15px 15px 15px;
+                border-radius: 10px;
+                background-color: rgba(3, 15, 54, 0.75);
+                margin: auto;
+                box-shadow: 0 0 10px gold,  0 0 20px gold,  0 0 30px gold;
+            }
+
+            .linha {
+                display: flex;
+            }
+
+            .numero {
+                width: 80px;
+                height: 50px;
+                border: 1px solid gray;
+                font-size: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                background-color: #0f0;
+                text-shadow: 1px 1px 2px #000000;
+                color: #fff;
+            }
+
+            .letra, .numero{
+                border-radius: 2px;
+            }
+
+            .letra, .numero{
+                border-radius: 2px;
+            }
+
+            footer{
+                text-align: center;
+            }
+
+            footer button{
+                text-align: center;
+                font-weight: bold;
+                font-size: 20px;
+                margin: 20px;
+                width: 200px;
+                height: 50px;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 10px;
+                text-shadow: 1px 2px 4px #000000;
+            }
+
+            footer button:hover{
+                transform: scale(1.05);
+            }
+
+            .novamente{
+                background-color: gold;
+            }
+
+            .inicial{
+                background-color: #800080;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="imgs/voce-ganhou.png" class="vitoria" alt="Parabéns! Você Ganhou!">
+        </header>
+        
+        <main id="main">
+
+        </main>
+        <footer>
+            <button onclick="location.href = 'index.html'" class="inicial">Menu inicial</button>
+            <button onclick="window.history.back()" class="novamente">Jogar Novamente</button>
+        </footer>
+        <script>
+            let cartela = JSON.parse(localStorage.getItem('cartela'));
+            console.log(cartela)
+
+            const container = document.getElementById("main");
+            const cartelaDiv = document.createElement("div");
+            cartelaDiv.classList.add("cartela");
+
+            let html = `<h3>⭐ SUA CARTELA VENCEDORA ⭐</h3>`;
+
+            html += `<div class="linha">`;
+            for (const letra of ["B", "I", "N", "G", "O"]) {
+                html += `<button class="letra" id="letra-${letra}">${letra}</button>`;
+            }
+            html += `</div>`;
+
+            for(let j = 0; j < 5; j++) {
+                html += `<div class="linha">`;
+
+                for(let k = 0; k < 5; k++) {
+                    html += `<button class="numero">${cartela.cartela[j][k]}</button>`;
+                }
+
+                html += `</div>`;
+            }
+
+                cartelaDiv.innerHTML = html;
+                container.appendChild(cartelaDiv);
+        </script>
+    </body>
+</html>

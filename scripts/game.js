@@ -133,11 +133,9 @@ async function verificarAcertoBots(tempo, numeroSorteado) {
                             `${bot.nome} acertou ${numeroSorteado} na cartela ${j + 1}`
                         );
                         if(cartela.numerosAcertos === 24) {
-                            alert(
-                                `${bot.nome} fez BINGO na cartela ${j + 1}!`
-                            );
-                            location.reload();
-                            return;
+                            localStorage.setItem('derrota', true)
+                            localStorage.setItem('cartela', JSON.stringify(cartela.cartela))
+                            location.href = 'derrota.html';
                         }
                     }
                 }
@@ -167,10 +165,6 @@ function verificarAcerto(botao, idCartela, linha, coluna) {
     botao.style.backgroundColor = "#00FF00";
     botao.style.color = "#fff";
     botao.style.textShadow = "1px 1px 2px #000000";
-    
-    if (cartelasJogador[idCartela].numerosMarcados.length === 24) {
-        alert(`BINGO! Cartela ${idCartela + 1} completada!`);
-    }
 }
 
 
@@ -322,9 +316,18 @@ function iniciarJogo() {
 }
 
 function bingo() {
-    
+    for (let i = 0; i < cartelasJogador.length; i++) {
+
+        if (cartelasJogador[i].numerosMarcados.length === 24) {
+            cartelaVencedora = cartelasJogador[i];
+            localStorage.setItem('cartela', JSON.stringify(cartelaVencedora))
+            location.href = 'vitoria.html';
+            return true;
+        }
+
+    }
+    localStorage.setItem('derrota', false)
+    location.href = 'derrota.html';
 }
 
 iniciarJogo();
-
-//https://chatgpt.com/c/6a23bea0-477c-83e9-b45f-caad1c4e3650 Planos fazer o jogador ganhar
